@@ -1,27 +1,25 @@
-function checkPermutation(s1: string, s2: string): boolean {
+/**
+ * Time: O(2n) = O(n)
+ * Space: O(n)
+ * @param {string} s1
+ * @param {string} s2
+ * @returns {boolean}
+ */
+export function checkPermutation(s1: string, s2: string): boolean {
   if (s1.length !== s2.length) return false;
-  const dict: Record<string, number> = {};
+  const s1Map = new Map<string, number>();
 
   for (const c of s1) {
-    if (c in dict) {
-      dict[c]++;
-      continue;
-    }
-
-    dict[c] = 1;
+    const currentCount = s1Map.get(c) || 0;
+    s1Map.set(c, currentCount + 1);
   }
 
   for (const c of s2) {
-    if (!(c in dict)) return false;
-    dict[c]--;
-    if (dict[c] < 0) return false;
+    const currentCount = s1Map.get(c);
+    if (!currentCount) return false;
+    if (currentCount === 1) s1Map.delete(c);
+    else s1Map.set(c, currentCount - 1);
   }
 
-  return true;
+  return s1Map.size === 0;
 }
-
-// time: O(2n) = O(n)
-// space: O(n)
-console.log(checkPermutation("aaab", "bbba"));
-console.log(checkPermutation("angelo", "logean"));
-console.log(checkPermutation("aaaa", "aaaa"));
