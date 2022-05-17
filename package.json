@@ -1,0 +1,19 @@
+{
+  "devDependencies": {
+    "@types/node": "^17.0.34",
+    "nodemon": "^2.0.16",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  },
+  "name": "cracking-the-coding-interview",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "clean": "rimraf out"
+  },
+  "author": "angelozdev <angelozam17@gmail.com>",
+  "license": "MIT",
+  "description": ""
+}
