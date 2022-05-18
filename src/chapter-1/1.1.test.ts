@@ -4,18 +4,23 @@ const fns = [isUnique, isUnique2];
 
 fns.forEach((fn) => {
   describe("isUnique", () => {
-    test.each(["asdfghjkl", "a", "1234567890", "Aa"])(
-      "should return true when string is %s",
-      (s) => {
-        expect(fn(s)).toBe(true);
-      }
-    );
+    test.each([
+      "abcdefghi",
+      "jklpoiuqwerzxcvmnsadf",
+      "1234567890",
+      "AaBbCcDdeFg1234567890(*&^%$#@!)",
+    ])("should return true when string is %s", (s) => {
+      expect(fn(s)).toBe(true);
+    });
 
-    test.each(["aaaa", "bb", "asdfghjkla", "aasdfghjkl"])(
-      "should return false when string is %s",
-      (s) => {
-        expect(fn(s)).toBe(false);
-      }
-    );
+    test.each([
+      "abcadef",
+      "aaaaaaaaaa",
+      "abcdefghijklmnopqrstuvwxyza",
+      "1234567890asdklf1",
+      "!@#$%^&*()(*#($&#(*$&#*($&#()))))",
+    ])("should return false when string is %s", (s) => {
+      expect(fn(s)).toBe(false);
+    });
   });
 });
